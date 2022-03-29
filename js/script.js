@@ -167,6 +167,15 @@ const app = new Vue({
                     }
                 ],
             }
-        ]
+        ],
+        index: 0
+    },
+    methods: {
+        findAvatar(contact) {
+            return `img/avatar${contact.avatar}.jpg`;
+        },
+        findUserAvatar() {
+            return `img/avatar${this.contacts[this.index].avatar}.jpg`;
+        }
     }
 })
