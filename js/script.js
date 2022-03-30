@@ -176,6 +176,18 @@ const app = new Vue({
         },
         findUserAvatar() {
             return `img/avatar${this.contacts[this.index].avatar}.jpg`;
+        },
+        getLastMessage(contact) {
+            const messages = contact.messages;
+            const lastMessage = (messages.length > 0) ? messages[messages.length - 1].message : '';
+            return lastMessage;
+        },
+        getLastMessageDate(contact) {
+            // const lastMessage = this.getLastMessage(contact);
+            const date = lastMessage.date;
+            const hours = date.split(' ')[1];
+            const time = hours.split(':');
+            return time[0] + ':' + time[1];
         }
     }
 })

@@ -10,10 +10,17 @@
     height: 100vh;
 }
 
+.green-bg {
+    background-color: #009688;
+    height: 10vh;
+}
+#app {
+    z-index: 2;
+}
 .container-app {
     width: 80%;
     height: 96vh;
-    margin: 0 auto;
+    margin: -80px auto;
     padding: 2vh;
 }
 
@@ -34,6 +41,7 @@
 
 #chat {
     background-image: url(../img/mine.jpg);
+    padding: 50px;
     width: 100%;
     height: 81vh;
 }
@@ -53,4 +61,33 @@
 
 .border-chatList {
     border-top: 1px solid #e9ebeb;
+}
+
+.sent {
+    max-width: fit-content;
+    margin: 10px 0;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: flex;
+    align-self: flex-end;
+    background-color: #d5f9ba;
+}
+
+.sent p {
+    font-size: 10px;
+}
+
+.received {
+    min-width: fit-content;
+    margin: 10px 0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    display: flex;
+    align-self: flex-start;
+    background-color: white;
+}
+
+.received p {
+    font-size: 10px;
 }
