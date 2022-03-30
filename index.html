@@ -60,7 +60,7 @@
                 <!-- search -->
                 <div id="findChat" class="row-12 d-flex align-items-center p-2">
                     <div class="col-12">
-                        <input v-model="newMessage" @keyUp="sendNewMessage" id="inputSend"
+                        <input v-model="searchBar" @keyUp="filteredChat" id="inputSend"
                             class="border-0 rounded-2 w-100 fontAwesome" type="text" name="search"
                             placeholder="  &#xf002   Cerca o inizia una una nuova chat">
                     </div>
@@ -71,6 +71,7 @@
                 <div id="chatList" class="row-12 bg-white">
 
                     <div @click="selector(index)" :class="activeUser(index)" v-for="(contact, index) in contacts"
+                        v-if="contact.visible === true"
                         class="row-12 d-flex align-items-center border-chatList p-2 userList-hover">
                         <div class="col-2 me-3">
                             <img :src="findAvatar(contact)" alt="avatar" class="rounded-circle avatar-size">

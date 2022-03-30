@@ -169,7 +169,8 @@ const app = new Vue({
             }
         ],
         index: 0,
-        newMessage: ''
+        newMessage: '',
+        searchBar: ''
     },
     methods: {
         findAvatar(contact) {
@@ -227,8 +228,21 @@ const app = new Vue({
                 }
                 this.contacts[this.index].messages.push(answer);
             }, 1000);
+        },
+        filteredChat() {
+            let search = this.searchBar.toLowerCase();
+            for (let i = 0; i < this.contacts.length; i++) {
+                let userName = this.contacts[i].name.toLowerCase();
+                if (userName.includes(search)) {
+                    this.contacts[i].visible = true;
+                    console.log(this.contacts[i].name + ' ' + this.contacts[i].visible);
+                } else {
+                    this.contacts[i].visible = false;
+                    console.log(this.contacts[i].name + ' ' + this.contacts[i].visible);
+                }
+            }
         }
 
     }
-})
+});
 

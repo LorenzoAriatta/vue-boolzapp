@@ -15,9 +15,7 @@
     background-color: #009688;
     height: 10vh;
 }
-#app {
-    z-index: 2;
-}
+
 .container-app {
     width: 80%;
     height: 96vh;
@@ -25,12 +23,6 @@
     padding: 2vh;
 }
 
-/* #container-left {
-    height: 85%;
-}
-#container-right {
-    height: 85%;
-} */
 
 #myProfile {
     background-color: #eaeaea;
@@ -61,6 +53,7 @@
 #chatList {
     height: 73.3vh;
     overflow-x: hidden;
+    cursor: pointer;
 }
 
 #chat {
