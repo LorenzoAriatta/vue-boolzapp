@@ -168,7 +168,8 @@ const app = new Vue({
                 ],
             }
         ],
-        index: 0
+        index: 0,
+        newMessage: ''
     },
     methods: {
         findAvatar(contact) {
@@ -182,9 +183,9 @@ const app = new Vue({
             const lastMessage = (messages.length > 0) ? messages[messages.length - 1].message : '';
             return lastMessage;
         },
-        getLastMessageDate(contact) {
+        getLastMessageDate(message) {
 
-            let date = contact.date;
+            let date = message.date;
             let hours = date.split(' ')[1];
             let time = hours.split(':');
             return time[0] + ':' + time[1];
@@ -196,7 +197,38 @@ const app = new Vue({
             } else {
                 return 'received';
             }
+        },
+        activeUser(i) {
+            if (i === this.index) {
+                return 'active';
+            }
+        },
+        selector(i) {
+            this.index = i;
+        },
+        sendNewMessage() {
+            let time = new Date();
+            let today = time.getUTCMonth() + 1 + '/' + time.getUTCDate() + '/' + time.getUTCFullYear();
+            let now = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds();
+            let currentTime = today + ' ' + now;
+            let newMess = {
+                date: currentTime,
+                message: this.newMessage,
+                status: 'sent'
+            }
+            this.contacts[this.index].messages.push(newMess);
+            this.newMessage = '';
+
+            setTimeout(() => {
+                let answer = {
+                    date: currentTime,
+                    message: 'OK!',
+                    status: 'received'
+                }
+                this.contacts[this.index].messages.push(answer);
+            }, 1000);
         }
+
     }
 })
 

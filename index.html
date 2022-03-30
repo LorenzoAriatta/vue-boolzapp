@@ -33,7 +33,7 @@
                         <img class="rounded-circle w-100" src="img/avatar_io.jpg" alt="myPic">
                     </div>
                     <div class="col-8">
-                        <p class="fw-bold mb-0 ms-2">Sofia</p>
+                        <h5 class="mb-0 ms-2">Sofia</h5>
                     </div>
 
                     <div class="col-2">
@@ -47,31 +47,41 @@
 
                 <!-- sez notifiche -->
                 <div id="notify" class="row-12 d-flex">
-                    <div class="col-2">
-                        <i class="fa-solid fa-bell-slash"></i>
+                    <div class="col-2 d-flex justify-content-center align-items-center">
+                        <div class="noti-bell rounded-circle"><i class="fa-solid fa-bell-slash"></i></div>
                     </div>
                     <div class="col-10">
-                        <p class="fw-bold mb-0 ms-2">Ricevi notifiche di nuovi messaggi</p>
+                        <p class="fw-bold text-black">Ricevi notifiche di nuovi messaggi</p>
+                        <a class="text-black-50" href="#">Attiva notifiche Desktop</a>
                     </div>
                 </div>
                 <!-- / sez notifiche -->
 
-                <div id="findChat"></div>
+                <!-- search -->
+                <div id="findChat" class="row-12 d-flex align-items-center p-2">
+                    <div class="col-12">
+                        <input v-model="newMessage" @keyUp="sendNewMessage" id="inputSend"
+                            class="border-0 rounded-2 w-100 fontAwesome" type="text" name="search"
+                            placeholder="  &#xf002   Cerca o inizia una una nuova chat">
+                    </div>
+                </div>
+                <!-- / search -->
 
                 <!-- chat list -->
                 <div id="chatList" class="row-12 bg-white">
 
-                    <div v-for="(contact, index) in contacts"
-                        class="row-12 d-flex align-items-center border-chatList p-2">
-                        <div class="col-2">
+                    <div @click="selector(index)" :class="activeUser(index)" v-for="(contact, index) in contacts"
+                        class="row-12 d-flex align-items-center border-chatList p-2 userList-hover">
+                        <div class="col-2 me-3">
                             <img :src="findAvatar(contact)" alt="avatar" class="rounded-circle avatar-size">
                         </div>
                         <div class="col-8">
                             <h5>{{contact.name}}</h5>
                             <p class="text-black-50">{{getLastMessage(contact)}}</p>
                         </div>
-                        <div class="col-2">
-                            <!-- <p>{{getLastMessageDate(contact)}}</p> -->
+                        <div v-if="position === contacts[index].messages.length - 1"
+                            v-for="(message, position) in contacts[index].messages" class="col-2">
+                            <p>{{getLastMessageDate(message)}}</p>
                         </div>
                     </div>
 
@@ -107,13 +117,14 @@
                 <!-- finestra chat -->
                 <div id="chat" class="d-flex flex-column">
 
-                    <div :class="textStatus(message)" v-for="message in contacts[index].messages">
+                    <div class="row align-items-end" :class="textStatus(message)"
+                        v-for="message in contacts[index].messages">
 
-                        <div class="col-11">
-                            <h6 class="col-11">{{message.message}}</h6>
+                        <div class="col-10">
+                            <h6>{{message.message}}</h6>
                         </div>
-                        <div class="col-1">
-                            <p class="text-black-50">{{getLastMessageDate(message)}}</p>
+                        <div class="col-2">
+                            <span class="text-black-50">{{getLastMessageDate(message)}}</span>
                         </div>
 
                     </div>
@@ -129,8 +140,9 @@
                     </div>
 
                     <div class="col-8">
-                        <input id="inputSend" class="border-0 rounded-2 w-100" type="text" name="sendMessage"
-                            placeholder="   Scrivi un messaggio">
+                        <input v-model="newMessage" @keyUp.enter="sendNewMessage" id="inputSend"
+                            class="border-0 rounded-2 w-100" type="text" name="sendMessage"
+                            placeholder="  &#xf11c   Scrivi un messaggio">
                     </div>
 
                     <div class="col-2 text-center">
