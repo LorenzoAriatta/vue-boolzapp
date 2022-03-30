@@ -71,7 +71,7 @@
                             <p class="text-black-50">{{getLastMessage(contact)}}</p>
                         </div>
                         <div class="col-2">
-                            <p>{{getLastMessageDate(contact)}}</p>
+                            <!-- <p>{{getLastMessageDate(contact)}}</p> -->
                         </div>
                     </div>
 
@@ -107,13 +107,15 @@
                 <!-- finestra chat -->
                 <div id="chat" class="d-flex flex-column">
 
-                    <div class="row d-flex">
-                        <div v-for="message in contacts[index].messages" class="col-6 sent">
-                            <p>{{contacts[index].messages}}</p>
-                        </div>
-                        <div class="col-6">
+                    <div :class="textStatus(message)" v-for="message in contacts[index].messages">
 
+                        <div class="col-11">
+                            <h6 class="col-11">{{message.message}}</h6>
                         </div>
+                        <div class="col-1">
+                            <p class="text-black-50">{{getLastMessageDate(message)}}</p>
+                        </div>
+
                     </div>
 
                 </div>

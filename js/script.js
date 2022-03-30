@@ -183,11 +183,20 @@ const app = new Vue({
             return lastMessage;
         },
         getLastMessageDate(contact) {
-            // const lastMessage = this.getLastMessage(contact);
-            const date = lastMessage.date;
-            const hours = date.split(' ')[1];
-            const time = hours.split(':');
+
+            let date = contact.date;
+            let hours = date.split(' ')[1];
+            let time = hours.split(':');
             return time[0] + ':' + time[1];
+
+        },
+        textStatus(message) {
+            if (message.status === 'sent') {
+                return 'sent';
+            } else {
+                return 'received';
+            }
         }
     }
 })
+
