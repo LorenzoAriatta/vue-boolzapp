@@ -217,17 +217,20 @@ const app = new Vue({
                 message: this.newMessage,
                 status: 'sent'
             }
-            this.contacts[this.index].messages.push(newMess);
-            this.newMessage = '';
+            if (this.newMessage.length > 0) {
+                this.contacts[this.index].messages.push(newMess);
+                this.newMessage = '';
+                setTimeout(() => {
+                    let answer = {
+                        date: currentTime,
+                        message: 'OK!',
+                        status: 'received'
+                    }
+                    this.contacts[this.index].messages.push(answer);
+                }, 1000);
+            }
 
-            setTimeout(() => {
-                let answer = {
-                    date: currentTime,
-                    message: 'OK!',
-                    status: 'received'
-                }
-                this.contacts[this.index].messages.push(answer);
-            }, 1000);
+
         },
         filteredChat() {
             let search = this.searchBar.toLowerCase();
