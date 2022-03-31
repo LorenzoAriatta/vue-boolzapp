@@ -1,10 +1,10 @@
+/* ----- GENERALS ----- */ 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, FontAwesome, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
 
 .grey-bg {
     background-color: #d8dbd5;
@@ -23,9 +23,15 @@
     padding: 2vh;
 }
 
+.avatar-size {
+    width: 4rem;
+    height: 4rem;
+}
 
+/* ----- LEFT CONTAINER ----- */ 
 #myProfile {
     background-color: #eaeaea;
+    border-top-left-radius: 20px;
 }
 
 #notify {
@@ -48,14 +54,21 @@
 
 #userChat {
     background-color: #eaeaea;
+    border-top-right-radius: 20px;
 }
 
 #chatList {
     height: 73.3vh;
     overflow-x: hidden;
     cursor: pointer;
+    border-bottom-left-radius: 20px;
 }
 
+.border-chatList {
+    border-top: 1px solid #e9ebeb;
+}
+
+/* ----- RIGHT CONTAINER ----- */
 #chat {
     background-image: url(../img/mine.jpg);
     padding: 50px;
@@ -66,19 +79,11 @@
 
 #send {
     background-color: #f3eeea;
+    border-bottom-right-radius: 20px;
 }
 
 #inputSend {
     height: 40px;
-}
-
-.avatar-size {
-    width: 4rem;
-    height: 4rem;
-}
-
-.border-chatList {
-    border-top: 1px solid #e9ebeb;
 }
 
 .sent {
@@ -91,6 +96,7 @@
     flex-wrap: nowrap;
     align-self: flex-end;
     background-color: #d5f9ba;
+    box-shadow: 4px 3px 7px -2px black;
 }
 
 .sent span {
@@ -107,6 +113,7 @@
     flex-wrap: nowrap;
     align-self: flex-start;
     background-color: white;
+    box-shadow: 4px 3px 7px -2px black;
 }
 
 .received span{
@@ -123,6 +130,7 @@
     position: relative;
 }
 
+/* ----- EFFECTS ----- */
 .dropdown-item:hover{
     background-color: #8edafc;
 }
@@ -131,11 +139,10 @@
     display: block;
 }
 
-
 .userList-hover:hover {
     transition: 0.3s ease-in-out;
-    background-color: #e9ebeb;
+    background-color: #bbbdbd;
 }
 .active {
-    background-color: #e9ebeb;
+    background-color: #bbbdbd;
 }

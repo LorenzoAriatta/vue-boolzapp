@@ -1,7 +1,6 @@
 console.log('JS OK!');
 
 
-
 const app = new Vue({
     el: '#app',
     data: {
@@ -191,20 +190,24 @@ const app = new Vue({
         ],
         index: 0,
         newMessage: '',
-        searchBar: ''
+        searchBar: '',
+        isTyping: false
     },
     methods: {
+        //cerco avatar users dinamicamente
         findAvatar(contact) {
             return `img/avatar${contact.avatar}.jpg`;
         },
         findUserAvatar() {
             return `img/avatar${this.contacts[this.index].avatar}.jpg`;
         },
+        //funzione per far ritornare il val dell'ultimo messaggio
         getLastMessage(contact) {
             const messages = contact.messages;
             const lastMessage = (messages.length > 0) ? messages[messages.length - 1].message : '';
             return lastMessage;
         },
+        //ottengo l'ora dell'ultimo messaggio inviato splittando i dati in arrays
         getLastMessageDate(message) {
 
             let date = message.date;
@@ -213,6 +216,7 @@ const app = new Vue({
             return time[0] + ':' + time[1];
 
         },
+        //check degli status dei messaggi, assegnando una classe in base al valore
         textStatus(message) {
             if (message.status === 'sent') {
                 return 'sent';
@@ -220,6 +224,7 @@ const app = new Vue({
                 return 'received';
             }
         },
+        //assegnazione di una classe al contatto cliccato in lista
         activeUser(i) {
             if (i === this.index) {
                 return 'active';
@@ -228,6 +233,14 @@ const app = new Vue({
         selector(i) {
             this.index = i;
         },
+        //funzione per inviare un nuovo messaggio in chat con keyUp.enter
+        //tramite il valore raccolto da input,
+        //creo un nuovo formato data, e un nuovo oggetto da pushare nell'array
+        //con assegnazioni di valori, per poterlo identificare come sent
+        //e tramite un setTimeout generare un secondo oggetto, come risposta
+        //che si indentifica come valore received
+        //input non invia se non ha almeno una lettera, cotrollo spazi vuoti
+        //reset ad ogni invio  
         sendNewMessage() {
             let time = new Date();
             let today = time.getUTCMonth() + 1 + '/' + time.getUTCDate() + '/' + time.getUTCFullYear();
@@ -238,21 +251,24 @@ const app = new Vue({
                 message: this.newMessage,
                 status: 'sent'
             }
-            if (this.newMessage.length > 0) {
+            let checkMessage = this.newMessage.trim();
+            if (checkMessage.length > 0) {
                 this.contacts[this.index].messages.push(newMess);
-                this.newMessage = '';
+
+                this.isTyping = true;
                 setTimeout(() => {
                     let answer = {
                         date: currentTime,
                         message: 'OK!',
-                        status: 'received'
+                        status: 'received',
                     }
                     this.contacts[this.index].messages.push(answer);
-                }, 1000);
+                    this.isTyping = false;
+                }, 2000);
             }
-
-
+            this.newMessage = '';
         },
+        //funzione per filtrare i risultati di ricerca user tramite valore input
         filteredChat() {
             let search = this.searchBar.toLowerCase();
             for (let i = 0; i < this.contacts.length; i++) {
@@ -266,12 +282,16 @@ const app = new Vue({
                 }
             }
         },
+        //funzioni per accedere al dropdown menu
+        //ho aggiunto una nuova key agli oggetti contenuti in messagges
         dropDown(pointer) {
             this.contacts[this.index].messages[pointer].dropdownMenu = true;
         },
         resetDrop(pointer) {
             this.contacts[this.index].messages[pointer].dropdownMenu = false;
         },
+        //funzione per rimuovere il messaggio selezionato
+        //tramite il dropdown menu
         deleteMessage(pointer) {
             this.contacts[this.index].messages.splice(pointer, 1);
         }
