@@ -83,10 +83,12 @@
 
 .sent {
     min-width: 40%;
+    height: 50px;
     margin: 10px 0;
     border-radius: 10px;
     padding: 5px 10px;
     display: flex;
+    flex-wrap: nowrap;
     align-self: flex-end;
     background-color: #d5f9ba;
 }
@@ -97,10 +99,12 @@
 
 .received {
     min-width: 40%;
+    height: 50px;
     margin: 10px 0;
     border-radius: 5px;
     padding: 5px 10px;
     display: flex;
+    flex-wrap: nowrap;
     align-self: flex-start;
     background-color: white;
 }
@@ -108,6 +112,25 @@
 .received span{
     font-size: 10px;
 }
+
+.info {
+    width: 100%;
+    font-size: 12px;
+}
+
+.drop {
+    display: none;
+    position: relative;
+}
+
+.dropdown-item:hover{
+    background-color: #8edafc;
+}
+
+.sent:hover .drop, .received:hover .drop {
+    display: block;
+}
+
 
 .userList-hover:hover {
     transition: 0.3s ease-in-out;

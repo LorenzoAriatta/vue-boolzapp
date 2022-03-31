@@ -118,17 +118,36 @@
                 <!-- finestra chat -->
                 <div id="chat" class="d-flex flex-column">
 
-                    <div class="row align-items-end" :class="textStatus(message)"
-                        v-for="message in contacts[index].messages">
+                    <div class="row-6" :class="textStatus(message)"
+                        v-for="(message, pointer) in contacts[index].messages">
 
-                        <div class="col-10">
+                        <div class="col-10 align-self-center">
                             <h6>{{message.message}}</h6>
                         </div>
-                        <div class="col-2">
+
+                        <div class="col-2 d-flex flex-column justify-content-end text-center">
+
+                            <i @click="dropDown(pointer)"
+                                class="drop dropdown fa-solid fa-chevron-down text-black-50 mb-2"></i>
+
+                            <ul @mouseleave="resetDrop(pointer)" v-if="message.dropdownMenu === true"
+                                class="dropdown-menu d-block">
+
+                                <li><a class="dropdown-item" href="#">
+                                        <p class=" info">&#xf05a Message {{message.status}} at {{message.date}}</p>
+                                    </a></li>
+                                <li><a @click="deleteMessage(pointer)" class="dropdown-item" href="#">&#xf1f8 Delete
+                                        Message</a>
+                                </li>
+
+                            </ul>
+
                             <span class="text-black-50">{{getLastMessageDate(message)}}</span>
                         </div>
 
                     </div>
+
+
 
                 </div>
                 <!-- / finestra chat -->
