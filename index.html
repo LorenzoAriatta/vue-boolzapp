@@ -108,8 +108,7 @@
 
                     <div class="col-9">
                         <h5 class="mb-0 ms-2">{{contacts[index].name}}</h5>
-                        <p class="mb-0 ms-2" v-if="isTyping === false">Ultimo accesso:
-                            {{contacts[index].messages[2].date}}</p>
+                        <p class="mb-0 ms-2" v-if="isTyping === false">Online a few second ago..</p>
                         <p class="mb-0 ms-2" v-else="isTyping === true">Is typing...</p>
                     </div>
 
