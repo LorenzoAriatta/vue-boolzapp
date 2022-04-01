@@ -1,4 +1,4 @@
-/* ----- GENERALS ----- */ 
+/* ----- GENERALS ----- */
 * {
     margin: 0;
     padding: 0;
@@ -28,10 +28,11 @@
     height: 4rem;
 }
 
-/* ----- LEFT CONTAINER ----- */ 
+/* ----- LEFT CONTAINER ----- */
 #myProfile {
     background-color: #eaeaea;
     border-top-left-radius: 20px;
+    height: 82px;
 }
 
 #notify {
@@ -39,6 +40,7 @@
     color: #8edafc;
     padding: 5px;
 }
+
 .noti-bell {
     background-color: #f2fbff;
     width: 50px;
@@ -55,6 +57,7 @@
 #userChat {
     background-color: #eaeaea;
     border-top-right-radius: 20px;
+    height: 80px;
 }
 
 #chatList {
@@ -73,7 +76,7 @@
     background-image: url(../img/mine.jpg);
     padding: 50px;
     width: 100%;
-    height: 77.4vh;
+    height: 78vh;
     overflow-x: hidden;
 }
 
@@ -116,7 +119,7 @@
     box-shadow: 4px 3px 7px -2px black;
 }
 
-.received span{
+.received span {
     font-size: 10px;
 }
 
@@ -131,11 +134,12 @@
 }
 
 /* ----- EFFECTS ----- */
-.dropdown-item:hover{
+.dropdown-item:hover {
     background-color: #8edafc;
 }
 
-.sent:hover .drop, .received:hover .drop {
+.sent:hover .drop,
+.received:hover .drop {
     display: block;
 }
 
@@ -143,6 +147,7 @@
     transition: 0.3s ease-in-out;
     background-color: #bbbdbd;
 }
+
 .active {
     background-color: #bbbdbd;
 }
